@@ -9,9 +9,9 @@ from flask import Flask
 from threading import Thread
 
 # 🔹 بيانات البوت
-API_ID = int(os.getenv("API_ID", "123456"))  # استبدل بالقيم الخاصة بك
-API_HASH = os.getenv("API_HASH", "your_api_hash")
-BOT_TOKEN = os.getenv("BOT_TOKEN", "your_bot_token")
+API_ID = int(os.getenv("API_ID", "19906987"))  # استبدل بالقيم الخاصة بك
+API_HASH = os.getenv("API_HASH", "4353d7341a3e6017f9d9026b897703c0")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "7431379275:AAFP-2Khf9McBWmRIQdNIo3mnslX9YCFUrY")
 
 # 🔹 تشغيل البوت
 app = Client("media_bot",
