@@ -2,5 +2,5 @@ Flask==2.3.2
 telethon
 py-tgcalls
 yt-dlp==2023.7.6
-pytz==3.3
+pytz
 ffmpeg-python==0.2.0
