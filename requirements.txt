@@ -1,6 +1,6 @@
 Flask==2.3.2
 telethon
-py-tgcalls
+pytgcalls==3.0.0  # أضف هذا السطر
 yt-dlp==2023.7.6
 pytz==2023.3
 ffmpeg-python==0.2.0
