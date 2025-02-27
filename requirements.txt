@@ -1,4 +1,6 @@
-pyrogram
-tgcrypto
-Flask
-yt-dlp
+Flask==2.3.2
+telethon
+py-tgcalls
+yt-dlp==2023.7.6
+pytz==2023.3
+ffmpeg-python==0.2.0
