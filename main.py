@@ -9,6 +9,14 @@ from telethon import TelegramClient, events
 from telethon.tl.functions.phone import CreateGroupCallRequest
 from pytgcalls import PyTgCalls
 from pytgcalls.types.input_stream import InputAudioStream
+from flask import Flask
+
+# 🔹 Flask لدعم Health Check
+flask_app = Flask(__name__)
+
+@flask_app.route('/')
+def health_check():
+    return "Bot is running!", 200
 
 # 🔹 Bot Credentials
 API_ID = 19906987  # Replace with your API ID
@@ -19,8 +27,13 @@ BOT_TOKEN = "7431379275:AAFP-2Khf9McBWmRIQdNIo3mnslX9YCFUrY"  # Replace with you
 app = TelegramClient("media_bot", API_ID, API_HASH).start(bot_token=BOT_TOKEN)
 
 # 🔹 إعداد PyTgCalls
-tgcalls = PyTgCalls(app)
-tgcalls.start()
+try:
+    tgcalls = PyTgCalls(app)
+    tgcalls.start()
+    print("PyTgCalls initialized successfully")
+except Exception as e:
+    print(f"Error initializing PyTgCalls: {e}")
+    raise
 
 # 📌 إنشاء بث صوتي
 async def create_voice_chat(chat_id):
@@ -128,9 +141,7 @@ async def start_voice_chat(event):
     else:
         await event.reply("❌ **تعذر بدء البث الصوتي! تأكد من صلاحيات البوت.**")
 
-# 🔹 تشغيل Flask لإبقاء البوت نشطًا
-keep_alive()
-
-# 🔹 تشغيل البوت
-print("Bot is running...")
-app.run_loop()
+# 🔹 تشغيل Flask لإبقاء البوت نشطًا ودعم Health Check
+if __name__ == "__main__":
+    keep_alive()
+    app.run_loop()
