@@ -8,10 +8,16 @@ import pytz
 from telethon import TelegramClient, events
 from telethon.tl.functions.phone import CreateGroupCallRequest
 from pytgcalls import PyTgCalls
-from pytgcalls.types.input_stream import InputAudioStream
 from flask import Flask
 
-# 🔹 Flask لدعم Health Check
+# طباعة الإصدار للتأكد
+try:
+    import pytgcalls
+    print(f"py-tgcalls version: {pytgcalls.__version__}")
+except ImportError as e:
+    print(f"Failed to import py-tgcalls: {e}")
+    raise
+
 flask_app = Flask(__name__)
 
 @flask_app.route('/')
@@ -67,8 +73,13 @@ async def play_media(event):
         return
 
     try:
+        # محاولة استيراد InputAudioStream من الموقع الجديد
+        from pytgcalls.types import InputStream as InputAudioStream
         await tgcalls.join_group_call(chat_id, InputAudioStream(output_file))
         await event.reply("🎶 **تم بدء البث المباشر بنجاح!**")
+    except ImportError as e:
+        await event.reply(f"❌ **خطأ في استيراد InputAudioStream: {str(e)}**")
+        print(f"Import error: {e}")
     except Exception as e:
         await event.reply(f"❌ **خطأ أثناء البث: {str(e)}**")
         print(f"Streaming error: {e}")
