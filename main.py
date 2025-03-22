@@ -19,9 +19,9 @@ def health_check():
     return "Bot is running!", 200
 
 # 🔹 Bot Credentials
-API_ID = os.environ.get("API_ID", "19906987")  # Default values as backup
-API_HASH = os.environ.get("API_HASH", "4353d7341a3e6017f9d9026b897703c0")
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "7431379275:AAFP-2Khf9McBWmRIQdNIo3mnslX9YCFUrY")
+API_ID = os.environ.get("API_ID", "")  # Default values as backup
+API_HASH = os.environ.get("API_HASH", "")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 
 # 🔹 تشغيل البوت مع Telethon
 try:
